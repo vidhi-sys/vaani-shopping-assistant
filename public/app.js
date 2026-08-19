@@ -266,12 +266,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "product-card";
 
-      // Product fallback SVG placeholder image generator
-      const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%236366f1" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 13l3 3 7-7"/></svg>`;
+      const fallbackSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%236366f1" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 13l3 3 7-7"/></svg>`;
+      const imgSrc = prod.image || fallbackSvg;
 
       card.innerHTML = `
         <div class="product-img-wrap">
-          <img src="${svgPlaceholder}" alt="${prod.name}" class="product-img" />
+          <img src="${imgSrc}" alt="${prod.name}" class="product-img" onerror="this.src='${fallbackSvg}'" />
         </div>
         <div class="product-info">
           <span class="product-name">${prod.name}</span>
