@@ -1,0 +1,14 @@
+runtime: python310
+instance_class: F2
+
+entrypoint: uvicorn app:app --host 0.0.0.0 --port $PORT
+
+env_variables:
+  WHISPER_MODEL_SIZE: "base"
+
+handlers:
+  - url: /static
+    static_dir: static
+
+  - url: /.*
+    script: auto
