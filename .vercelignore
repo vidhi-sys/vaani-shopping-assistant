@@ -1,17 +1,6 @@
-# Tell Vercel to ignore Python backend server scripts and only build static web files
-
-*.py
+# Tell Vercel to ignore temporary caches and heavy binaries
 __pycache__/
 *.pyc
-requirements.txt
 requirements-full.txt
-voice_input.py
-smart_suggestions.py
-shopping_list.py
-voice_search.py
-app.py
-test_*.py
-dataset_samples.json
-catalog.json
 Dockerfile
 app.yaml
