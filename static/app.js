@@ -266,27 +266,43 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "product-card";
 
-      const fallbackSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%236366f1" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 13l3 3 7-7"/></svg>`;
-      const imgSrc = prod.image || fallbackSvg;
+      const defaultImg = "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80";
 
-      card.innerHTML = `
-        <div class="product-img-wrap">
-          <img src="${imgSrc}" alt="${prod.name}" class="product-img" onerror="this.src='${fallbackSvg}'" />
+      const imgWrap = document.createElement("div");
+      imgWrap.className = "product-img-wrap";
+      
+      const img = document.createElement("img");
+      img.src = prod.image || defaultImg;
+      img.alt = prod.name;
+      img.className = "product-img";
+      img.onerror = function() {
+        this.onerror = null;
+        this.src = defaultImg;
+      };
+      imgWrap.appendChild(img);
+
+      const info = document.createElement("div");
+      info.className = "product-info";
+      info.innerHTML = `
+        <span class="product-name">${prod.name}</span>
+        <span class="product-brand">${prod.brand} &bull; ${prod.size || prod.category}</span>
+        <div class="product-price-row">
+          <span class="product-price">$${prod.price.toFixed(2)}</span>
         </div>
-        <div class="product-info">
-          <span class="product-name">${prod.name}</span>
-          <span class="product-brand">${prod.brand} &bull; ${prod.size || prod.category}</span>
-          <div class="product-price-row">
-            <span class="product-price">$${prod.price.toFixed(2)}</span>
-          </div>
-        </div>
-        <button class="btn-add-cart" data-name="${prod.name}">+ Add to List</button>
       `;
 
-      card.querySelector(".btn-add-cart").addEventListener("click", () => {
+      const addBtn = document.createElement("button");
+      addBtn.className = "btn-add-cart";
+      addBtn.setAttribute("data-name", prod.name);
+      addBtn.textContent = "+ Add to List";
+      addBtn.addEventListener("click", () => {
         addShoppingItem(prod.name, 1);
         showToast(`✓ Added ${prod.name} to cart`, "success");
       });
+
+      card.appendChild(imgWrap);
+      card.appendChild(info);
+      card.appendChild(addBtn);
 
       productGrid.appendChild(card);
     });
