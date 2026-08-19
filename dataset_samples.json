@@ -1,0 +1,89 @@
+{
+  "description": "Public domain shopping query dataset for English and Hindi intent evaluation",
+  "samples": [
+    {
+      "phrase": "Add 2 liters of milk to my shopping cart",
+      "intent": "add",
+      "item": "milk",
+      "quantity": 2,
+      "language": "en"
+    },
+    {
+      "phrase": "I need to buy five apples",
+      "intent": "add",
+      "item": "apples",
+      "quantity": 5,
+      "language": "en"
+    },
+    {
+      "phrase": "Please put brown bread on the list",
+      "intent": "add",
+      "item": "bread",
+      "quantity": 1,
+      "language": "en"
+    },
+    {
+      "phrase": "Remove bananas from my list",
+      "intent": "remove",
+      "item": "bananas",
+      "quantity": 1,
+      "language": "en"
+    },
+    {
+      "phrase": "Delete olive oil from the cart",
+      "intent": "remove",
+      "item": "olive oil",
+      "quantity": 1,
+      "language": "en"
+    },
+    {
+      "phrase": "Update quantity of eggs to twelve",
+      "intent": "modify",
+      "item": "eggs",
+      "quantity": 12,
+      "language": "en"
+    },
+    {
+      "phrase": "Find tomatoes in my list",
+      "intent": "search",
+      "item": "tomatoes",
+      "quantity": 1,
+      "language": "en"
+    },
+    {
+      "phrase": "दूध और मक्खन लिस्ट में जोड़ो",
+      "intent": "add",
+      "item": "milk (दूध)",
+      "quantity": 1,
+      "language": "hi"
+    },
+    {
+      "phrase": "मुझे तीन किलो आलू चाहिए",
+      "intent": "add",
+      "item": "potatoes (आलू)",
+      "quantity": 3,
+      "language": "hi"
+    },
+    {
+      "phrase": "केला लिस्ट से हटा दो",
+      "intent": "remove",
+      "item": "bananas (केला)",
+      "quantity": 1,
+      "language": "hi"
+    },
+    {
+      "phrase": "क्या चावल लिस्ट में है",
+      "intent": "search",
+      "item": "rice (चावल)",
+      "quantity": 1,
+      "language": "hi"
+    },
+    {
+      "phrase": "सेब की मात्रा पांच करो",
+      "intent": "modify",
+      "item": "apples (सेब)",
+      "quantity": 5,
+      "language": "hi"
+    }
+  ]
+}
