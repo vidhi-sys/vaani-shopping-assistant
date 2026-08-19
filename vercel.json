@@ -1,6 +1,8 @@
 {
   "version": 2,
   "public": true,
+  "cleanUrls": true,
+  "outputDirectory": "static",
   "builds": [
     {
       "src": "static/**",
