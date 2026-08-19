@@ -1,0 +1,9 @@
+{
+  "name": "vaani-shopping-assistant",
+  "version": "2.0.0",
+  "description": "Vaani Smart Voice Store Frontend",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static build complete'"
+  }
+}
