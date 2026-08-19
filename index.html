@@ -3,177 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Vaani - Kawaii Voice Store 🥐✨</title>
+  <title>Vaani - Voice Shopping Assistant</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Toast Notification System -->
   <div id="toast-container" class="toast-container"></div>
 
-  <!-- Header Banner with Logo -->
+  <!-- Header Banner -->
   <header class="app-header">
     <div class="header-content">
       <div class="brand">
-        <img src="logo.png" alt="Vaani Logo" class="brand-logo-img" />
-        <div class="brand-titles">
-          <h1 class="brand-title">Vaani ✨</h1>
-          <span class="brand-subtitle">Kawaii Voice Store 🍞</span>
+        <div class="brand-icon">🎙️</div>
+        <div>
+          <h1 class="brand-title">Vaani</h1>
+          <span class="brand-badge">Voice Store</span>
         </div>
       </div>
-      <div class="header-actions">
-        <button id="clear-list-btn" class="btn-clear" title="Clear Shopping List">Clear All</button>
+
+      <div class="header-nav">
+        <span class="nav-link active">Catalog</span>
+        <button id="cart-nav-btn" class="cart-icon-btn">
+          <span>🛒 Cart</span>
+          <span id="cart-badge" class="cart-badge">0</span>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Container -->
+  <!-- Main Body Container -->
   <main class="app-container">
 
-    <!-- Voice Control Panel -->
-    <section class="voice-panel card">
-      <img src="kawaii_toast.png" alt="Kawaii Toast Mascot" class="toast-mascot-sticker" />
-      
-      <div id="status-indicator" class="status-badge state-idle">
-        <span class="status-dot"></span>
-        <span id="status-text">Tap mic & spill the tea ☕</span>
+    <!-- Hero Voice Controller Bar -->
+    <section class="hero-voice-section">
+      <div>
+        <h2 class="hero-title">Voice-Activated Shopping Assistant</h2>
+        <p class="hero-subtitle">Tap the microphone and speak naturally to add items, change quantities, or search products.</p>
       </div>
 
-      <!-- Large Microphone Button -->
-      <div class="mic-wrapper">
-        <button id="mic-btn" class="mic-btn state-idle" aria-label="Microphone Voice Control">
-          <svg class="mic-icon" viewBox="0 0 24 24" width="44" height="44" fill="currentColor">
+      <div class="voice-controller">
+        <!-- Main Microphone Button -->
+        <button id="mic-btn" class="mic-btn-main status-idle" aria-label="Voice Control Microphone">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
             <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
             <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
           </svg>
-          <div class="pulse-ring"></div>
         </button>
-      </div>
 
-      <!-- Live Transcript Box -->
-      <div class="transcript-box">
-        <span class="transcript-label">Spoken Voice Command:</span>
-        <p id="transcript-text" class="transcript-text">"Add 2 milk" or "Search apples under $5"</p>
-      </div>
-
-      <!-- Quick Command Hint Chips -->
-      <div class="hint-chips">
-        <button class="chip" data-phrase="Add 2 liters of milk">"Add 2 milk 🥛"</button>
-        <button class="chip" data-phrase="Remove bananas">"Remove bananas 🍌"</button>
-        <button class="chip" data-phrase="Search apples under $5">"Search apples under $5 🍎"</button>
-        <button class="chip" data-phrase="दूध लिस्ट में जोड़ो">"दूध जोड़ो 🇮🇳"</button>
-      </div>
-    </section>
-
-    <!-- Navigation Tabs -->
-    <nav class="nav-tabs">
-      <button class="tab-btn active" data-tab="list-tab">
-        <span>🛒 Cart Era</span>
-        <span id="item-count" class="tab-badge">0</span>
-      </button>
-      <button class="tab-btn" data-tab="search-tab">
-        <span>🔍 Find Snacks</span>
-      </button>
-      <button class="tab-btn" data-tab="suggestions-tab">
-        <span>💡 AI Vibe Check</span>
-      </button>
-    </nav>
-
-    <!-- Tab 1: Shopping List -->
-    <section id="list-tab" class="tab-content active">
-      <!-- Quick Manual Add Input -->
-      <div class="quick-add-card card">
-        <form id="manual-add-form" class="add-form">
-          <input type="text" id="manual-item-input" placeholder="Type item (e.g. Toast Bread, 3 Eggs)..." required />
-          <button type="submit" class="btn-primary">+ Add</button>
-        </form>
-      </div>
-
-      <!-- Empty List Placeholder with Kawaii Toast Image -->
-      <div id="empty-state" class="empty-state card">
-        <img src="kawaii_toast.png" alt="Empty List Kawaii Toast" class="empty-kawaii-img" />
-        <h3>Your list is empty bestie 🥖</h3>
-        <p>Tap the mic above and say <b>"Add 2 milk"</b> or <b>"buy 3 apples"</b></p>
-      </div>
-
-      <!-- Categorized Shopping List Container -->
-      <div id="categorized-list" class="categorized-list"></div>
-    </section>
-
-    <!-- Tab 2: Catalog Search -->
-    <section id="search-tab" class="tab-content hidden">
-      <div class="card">
-        <div class="search-header">
-          <h3>🔍 Voice & Catalog Search</h3>
-          <p class="search-desc">Search products by name, brand, or price filters (e.g. <i>"under $5"</i>)</p>
+        <div id="status-indicator" class="status-indicator-bar status-idle">
+          <span class="status-dot"></span>
+          <span id="status-text">Tap mic and speak naturally</span>
         </div>
 
-        <form id="search-form" class="search-input-form">
-          <input type="text" id="search-input" placeholder="Search product (e.g. organic milk under $5)..." />
-          <button type="submit" class="btn-primary">Search</button>
-        </form>
-
-        <div class="filter-chips">
-          <button class="filter-chip" data-query="under $4">Under $4 💸</button>
-          <button class="filter-chip" data-query="between $3 and $8">$3 - $8 Range 🎯</button>
-          <button class="filter-chip" data-query="organic">Organic 🌱</button>
-          <button class="filter-chip" data-query="snacks">Snacks 🍩</button>
-        </div>
-
-        <div id="search-results-list" class="search-results-list"></div>
-      </div>
-    </section>
-
-    <!-- Tab 3: Smart Suggestions -->
-    <section id="suggestions-tab" class="tab-content hidden">
-      <!-- Replenishment Recommendations -->
-      <div class="card suggestion-card">
-        <div class="suggestion-header">
-          <span class="suggestion-icon">⏰</span>
-          <div>
-            <h3>Restock Frequency Alerts</h3>
-            <small>Items lowkey running out based on your purchase routine</small>
+        <!-- Real-Time Speech Transcript Card -->
+        <div class="transcript-card">
+          <div class="transcript-icon">🎙️</div>
+          <div class="transcript-content">
+            <span class="transcript-label">Live Spoken Transcript:</span>
+            <p id="transcript-text" class="transcript-text">"Add 2 milk" or "Search organic apples under $5"</p>
           </div>
         </div>
-        <div id="replenishment-container" class="suggestions-list"></div>
-      </div>
 
-      <!-- Seasonal Recommendations -->
-      <div class="card suggestion-card">
-        <div class="suggestion-header">
-          <span class="suggestion-icon">🌿</span>
-          <div>
-            <h3 id="seasonal-title">Seasonal Produce Recommendations</h3>
-            <small id="seasonal-tip">Fresh in season right now</small>
-          </div>
+        <!-- Sample Voice Command Chips -->
+        <div class="sample-chips">
+          <button class="sample-chip" data-phrase="Add 2 milk">"Add 2 milk"</button>
+          <button class="sample-chip" data-phrase="Remove bananas">"Remove bananas"</button>
+          <button class="sample-chip" data-phrase="Search apples under $5">"Search apples under $5"</button>
+          <button class="sample-chip" data-phrase="दूध लिस्ट में जोड़ो">"दूध जोड़ो"</button>
         </div>
-        <div id="seasonal-container" class="seasonal-chips"></div>
-      </div>
-
-      <!-- Product Substitutes -->
-      <div class="card suggestion-card">
-        <div class="suggestion-header">
-          <span class="suggestion-icon">🔄</span>
-          <div>
-            <h3>Healthy & Vegan Substitutes</h3>
-            <small>Find plant-based, gluten-free, or healthy alternatives</small>
-          </div>
-        </div>
-        <div class="substitute-search-box">
-          <input type="text" id="substitute-input" placeholder="Enter item (e.g. milk, bread, sugar)..." />
-          <button id="find-substitute-btn" class="btn-secondary">Find Alt</button>
-        </div>
-        <div id="substitute-results" class="substitute-results"></div>
       </div>
     </section>
+
+    <!-- Two-Column Layout (Product Catalog & Sidebar Shopping Cart) -->
+    <div class="content-grid">
+
+      <!-- Left Column: Product Store Catalog -->
+      <section class="section-card">
+        <div class="section-header">
+          <h3 class="section-title">All Products</h3>
+          <span class="product-brand" id="catalog-count-label">35 items</span>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <button class="filter-btn active" data-cat="all">All</button>
+          <button class="filter-btn" data-cat="bakery">Bakery & Bread</button>
+          <button class="filter-btn" data-cat="dairy">Dairy & Milk</button>
+          <button class="filter-btn" data-cat="produce">Fresh Produce</button>
+          <button class="filter-btn" data-cat="beverages">Beverages</button>
+          <button class="filter-btn" data-cat="snacks">Snacks</button>
+        </div>
+
+        <!-- Product Grid (Inspired by Reference Image 1) -->
+        <div id="product-grid" class="product-grid"></div>
+      </section>
+
+      <!-- Right Column: Sidebar Cart & Smart Suggestions -->
+      <aside class="cart-sidebar">
+        
+        <!-- Shopping List Cart Card -->
+        <div class="section-card">
+          <div class="section-header">
+            <h3 class="section-title">My Shopping List</h3>
+            <button id="clear-list-btn" class="filter-btn" style="padding: 4px 10px; font-size: 0.75rem;">Clear All</button>
+          </div>
+
+          <!-- Empty Cart Box -->
+          <div id="empty-cart-box" class="empty-cart-box">
+            <div class="empty-icon">🛒</div>
+            <p>Your shopping list is empty</p>
+            <small>Speak your order above or click "+ Add" on catalog items.</small>
+          </div>
+
+          <!-- Categorized List -->
+          <div id="categorized-list"></div>
+        </div>
+
+        <!-- Smart Recommendations Card -->
+        <div class="section-card">
+          <div class="section-header">
+            <h3 class="section-title">💡 Smart Suggestions</h3>
+          </div>
+
+          <div class="suggestions-box">
+            <div id="seasonal-box">
+              <small style="font-weight: 700; color: var(--text-muted);">SEASONAL HIGHLIGHTS</small>
+              <div id="seasonal-chips-wrap" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;"></div>
+            </div>
+
+            <div id="replenishment-box" style="margin-top: 10px;">
+              <small style="font-weight: 700; color: var(--text-muted);">RESTOCK ALERTS</small>
+              <div id="replenishment-items-wrap" style="margin-top: 6px;"></div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
 
   </main>
 
   <!-- Footer -->
   <footer class="app-footer">
-    <p><b>Vaani Kawaii Store</b> &bull; Gen-Z Voice Shopping Assistant ✨</p>
+    <p><b>Vaani Shopping Assistant</b> &bull; Voice-Activated Multilingual Ecommerce</p>
   </footer>
 
   <script src="app.js"></script>
