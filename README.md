@@ -6,6 +6,7 @@
 
 <p align="center">
   <b>Multilingual Voice-Powered Shopping Assistant, Smart Search & AI Recommendation Platform</b>
+  <b>Voice Commanding Project </b>
 </p>
 
 <p align="center">
